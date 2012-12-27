@@ -1,6 +1,24 @@
 @app = angular.module 'app', []
 
-app.controller "FlashbackController", ($scope, $http) ->
+app.config ($routeProvider) ->
+  $routeProvider.
+    when("/", action: "home").
+    when("/:hashtag", action: "show").
+    otherwise(redirectTo: "/")
+
+app.controller "FlashbackController", ($scope, $http, $route, $routeParams) ->
+  render = ->
+    switch $route.current.action
+      when "show"
+        $scope.query = $route.current.params.hashtag
+        $scope.search()
+
+  $scope.$on "$routeChangeSuccess", ($currentRoute, $previousRoute) ->
+    render()
+
+  $scope.submitSearch = ->
+    $scope.search()
+
   $scope.search = ->
     $scope.tweets = []
     $scope.loading = true

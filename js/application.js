@@ -3,7 +3,31 @@
 
   this.app = angular.module('app', []);
 
-  app.controller("FlashbackController", function($scope, $http) {
+  app.config(function($routeProvider) {
+    return $routeProvider.when("/", {
+      action: "home"
+    }).when("/:hashtag", {
+      action: "show"
+    }).otherwise({
+      redirectTo: "/"
+    });
+  });
+
+  app.controller("FlashbackController", function($scope, $http, $route, $routeParams) {
+    var render;
+    render = function() {
+      switch ($route.current.action) {
+        case "show":
+          $scope.query = $route.current.params.hashtag;
+          return $scope.search();
+      }
+    };
+    $scope.$on("$routeChangeSuccess", function($currentRoute, $previousRoute) {
+      return render();
+    });
+    $scope.submitSearch = function() {
+      return $scope.search();
+    };
     return $scope.search = function() {
       var query, url;
       $scope.tweets = [];
