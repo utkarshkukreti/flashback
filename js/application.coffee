@@ -1,6 +1,8 @@
 @app = angular.module 'app', []
 
-app.config ($routeProvider) ->
+app.config ($routeProvider, $locationProvider) ->
+  $locationProvider.html5Mode true
+
   $routeProvider.
     when("/", action: "home").
     when("/:hashtag", action: "show").
