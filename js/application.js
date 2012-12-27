@@ -13,7 +13,7 @@
     });
   });
 
-  app.controller("FlashbackController", function($scope, $http, $route, $routeParams) {
+  app.controller("FlashbackController", function($scope, $http, $route, $routeParams, $location) {
     var render;
     render = function() {
       switch ($route.current.action) {
@@ -26,7 +26,7 @@
       return render();
     });
     $scope.submitSearch = function() {
-      return $scope.search();
+      return $location.path($scope.query);
     };
     return $scope.search = function() {
       var query, url;

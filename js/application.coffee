@@ -6,7 +6,8 @@ app.config ($routeProvider) ->
     when("/:hashtag", action: "show").
     otherwise(redirectTo: "/")
 
-app.controller "FlashbackController", ($scope, $http, $route, $routeParams) ->
+app.controller "FlashbackController", ($scope, $http, $route, $routeParams,
+                                       $location) ->
   render = ->
     switch $route.current.action
       when "show"
@@ -17,7 +18,7 @@ app.controller "FlashbackController", ($scope, $http, $route, $routeParams) ->
     render()
 
   $scope.submitSearch = ->
-    $scope.search()
+    $location.path $scope.query
 
   $scope.search = ->
     $scope.tweets = []

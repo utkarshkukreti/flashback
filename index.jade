@@ -5,7 +5,7 @@ html(ng-app = "app")
   script(src = "js/angular.js")
   script(src = "js/application.js")
 body(ng-controller = "FlashbackController")
-  form(ng-submit = "search()")
+  form(ng-submit = "submitSearch()")
     input(type = "text", ng-model = "query")
     input(type = "submit", value = "Search")
   .loading(ng-show = "loading") Loading...
