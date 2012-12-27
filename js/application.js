@@ -9,7 +9,7 @@
       $scope.tweets = [];
       $scope.loading = true;
       query = $scope.query;
-      url = "https://search.twitter.com/search.json?" + ("q=" + (encodeURIComponent(query)) + "&rpp=500&callback=JSON_CALLBACK");
+      url = "https://search.twitter.com/search.json?" + ("q=" + (encodeURIComponent(query)) + "&rpp=500&result_type=mixed&") + "callback=JSON_CALLBACK";
       return $http.jsonp(url).success(function(response) {
         $scope.tweets = response.results;
         return $scope.loading = false;
