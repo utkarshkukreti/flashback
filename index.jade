@@ -1,0 +1,17 @@
+!!! 5
+html(ng-app)
+  title Flashback
+  script(src = "js/angular.js")
+  script(src = "js/application.js")
+body(ng-controller = "App.FlashbackController")
+  form(ng-submit = "search()")
+    input(type = "text", ng-model = "query")
+    input(type = "submit", value = "Search")
+  .loading(ng-show = "loading") Loading...
+  #tweets(ng-show = "tweets")
+    ul
+      li(ng-repeat = "tweet in tweets")
+        img(ng-src = "{{tweet.profile_image_url}}")
+        .text {{tweet.text}}
+        .retweet-count {{tweet.metadata.recent_retweets || 0}}
+        .name {{tweet.from_user_name}}
