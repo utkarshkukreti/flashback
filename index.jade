@@ -1,6 +1,7 @@
 !!! 5
 html(ng-app)
   title Flashback
+  script(src = "js/underscore.js")
   script(src = "js/angular.js")
   script(src = "js/application.js")
 body(ng-controller = "App.FlashbackController")
@@ -10,7 +11,7 @@ body(ng-controller = "App.FlashbackController")
   .loading(ng-show = "loading") Loading...
   #tweets(ng-show = "tweets")
     ul
-      li(ng-repeat = "tweet in tweets")
+      li(ng-repeat = "tweet in tweets", class = "{{tweet.class}}")
         img(ng-src = "{{tweet.profile_image_url}}")
         .text {{tweet.text}}
         .retweet-count {{tweet.metadata.recent_retweets || 0}}
