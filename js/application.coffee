@@ -1,7 +1,7 @@
 @app = angular.module 'app', []
 
 app.config ($routeProvider, $locationProvider) ->
-  $locationProvider.html5Mode true
+  # $locationProvider.html5Mode true
 
   $routeProvider.
     when("/", action: "home").
