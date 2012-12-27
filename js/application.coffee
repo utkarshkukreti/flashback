@@ -1,5 +1,6 @@
-@App ||= {}
-App.FlashbackController = ($scope, $http) ->
+@app = angular.module 'app', []
+
+app.controller "FlashbackController", ($scope, $http) ->
   $scope.search = ->
     $scope.tweets = []
     $scope.loading = true
